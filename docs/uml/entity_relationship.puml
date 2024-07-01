@@ -1,0 +1,41 @@
+@startuml entity_relationship
+
+entity Admin{
+    id
+    user_name
+    password
+    email
+    created_at
+    last_login
+}
+entity User{
+    id
+    user_name
+    password
+    email
+    created_at
+    last_login
+}
+entity Gallery{
+    id
+    name
+    created_at
+    updated_at
+}
+
+entity Image{
+    id
+    name
+    size
+    type
+    data
+    upload_at
+}
+
+Gallery "1" }|-- "n" Image : 属于
+User "1" }|-- "n" Gallery: 属于
+
+Admin "1" }|- "n" User: 管理
+Admin "1" }|- "n" Gallery: 管理
+
+@enduml

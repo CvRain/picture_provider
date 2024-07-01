@@ -1,5 +1,4 @@
-@startuml
-'https://plantuml.com/component-diagram
+@startuml functional_frame
 
 card 图片下载站 as system
 card 用户 as user
