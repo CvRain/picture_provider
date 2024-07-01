@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+card 图片下载站 as system
+card 用户 as user
+card 管理员 as admin
+
+system <-- user
+system <-- admin
+
+
+card 上传 as upload
+card 分享 as share
+card 下载 as download
+card 删除 as remove
+
+user <-- upload
+user <-- share
+user <-- download
+user <-- remove
+
+card 用户管理 as userManage
+card 图片管理 as imgManage
+
+card 删除用户 as userRemove
+card 修改用户 as userUpdate
+
+userManage <-- userUpdate
+userManage <-- userRemove
+
+admin <-- userManage
+admin <-- imgManage
+
+
+@enduml
