@@ -1,7 +1,8 @@
 import {Elysia} from "elysia";
 import {swagger} from "@elysiajs/swagger";
-import {authRoutes} from "./routers/authRouter";
+import {authRouter} from "./routers/authRouter";
 import {neon, neonConfig} from '@neondatabase/serverless';
+import {galleryRouter} from "./routers/galleryRouter";
 
 neonConfig.fetchConnectionCache = true;
 
@@ -9,7 +10,8 @@ const startServer = async () => {
 
     const app = new Elysia()
         .use(swagger())
-        .use(authRoutes)
+        .use(authRouter)
+        .use(galleryRouter)
         .get("/", () => "Hello Elysia")
         .listen(3000);
 };

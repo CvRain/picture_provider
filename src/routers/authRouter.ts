@@ -6,7 +6,7 @@ import {RegisterRequest, LoginRequest} from "../models/userModel";
 const authService = new AuthService();
 const authController = new AuthController(authService);
 
-export const authRoutes = new Elysia({prefix: '/auth'})
+export const authRouter = new Elysia({prefix: '/auth'})
     .post('/register', ({body}: { body: RegisterRequest }) =>
         authController.register(body.username, body.email, body.password), {
         body: t.Object({
@@ -29,4 +29,4 @@ export const authRoutes = new Elysia({prefix: '/auth'})
         body: t.Object({
             name: t.String()
         })
-    });
+    })

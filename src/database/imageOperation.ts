@@ -36,6 +36,16 @@ export async function getAllImages() {
     }
 }
 
+// 通过画廊ID获得所有图片
+export async function getImagesByGalleryId(galleryId: number) {
+    try {
+        return await db.select().from(images).where(eq(images.gallery_id, galleryId));
+    } catch (error) {
+        console.error('Error getting images by gallery ID:', error);
+        throw error;
+    }
+}
+
 // 更新图片
 export async function updateImage(id: number, updateData: Partial<Omit<Image, '_id' | 'upload_at'>>) {
     try {
