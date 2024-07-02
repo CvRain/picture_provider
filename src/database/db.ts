@@ -1,5 +1,5 @@
 import pg from 'pg';
-import { drizzle } from 'drizzle-orm/node-postgres';
+import {drizzle} from 'drizzle-orm/node-postgres';
 
 const pool = new pg.Pool({
     host: 'localhost',
@@ -7,6 +7,7 @@ const pool = new pg.Pool({
     user: 'cvrain',
     password: 'qwe812928',
     database: 'mydb',
+    ssl: false
 });
 
 export const db = drizzle(pool);
