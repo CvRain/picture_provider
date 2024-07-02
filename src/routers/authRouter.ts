@@ -17,9 +17,9 @@ export const authRoutes = new Elysia({prefix: '/auth'})
     })
 
     .post('/login', ({body}: { body: LoginRequest }) =>
-        authController.login(body.username, body.password), {
+        authController.login(body.email, body.password), {
         body: t.Object({
-            username: t.String(),
+            email: t.String(),
             password: t.String()
         })
     })

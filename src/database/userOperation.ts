@@ -62,3 +62,14 @@ export async function deleteUser(id: number) {
         throw error;
     }
 }
+
+//fetch user by email
+export async function getUserByEmail(email: string) {
+    try {
+        const result = await db.select().from(users).where(eq(users.email, email));
+        return result[0];
+    } catch (error) {
+        console.error('Error getting user:', error);
+        throw error;
+    }
+}
