@@ -1,11 +1,31 @@
-import { Elysia } from "elysia";
-import { swagger } from "@elysiajs/swagger";
+import {Elysia} from "elysia";
+import {swagger} from "@elysiajs/swagger";
+import {authRoutes} from "./routers/authRouter";
+import {db} from "./database/db";
+import {neon, neonConfig} from '@neondatabase/serverless';
+import {sql} from "drizzle-orm";
 
-const app = new Elysia()
-  .use(swagger())
-  .get("/", () => "Hello Elysia")
-  .listen(3000);
+neonConfig.fetchConnectionCache = true;
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+async function testConnection() {
+    try {
+        const query = sql`SELECT current_database()`;
+        const result = await db.execute(query);
+        console.log(result.rows);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+
+const startServer = async () => {
+    await testConnection()
+
+    const app = new Elysia()
+        .use(swagger())
+        .use(authRoutes)
+        .get("/", () => "Hello Elysia")
+        .listen(3000);
+};
+
+startServer().catch(console.error);
