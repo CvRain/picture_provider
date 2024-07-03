@@ -5,7 +5,6 @@ import {
     getGalleryById,
     updateGallery
 } from "../database/galleryOperation";
-import {GalleryInfoRequest} from "../models/galleryModel";
 
 export class GalleryService {
     constructor() {

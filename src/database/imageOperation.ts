@@ -15,6 +15,17 @@ export async function createImage(image: Omit<Image, '_id' | 'upload_at'>) {
     }
 }
 
+// 检查图片是否存在
+export async function checkImageExist(id: number) {
+    try {
+        const result = await db.select().from(images).where(eq(images._id, id));
+        return result.length > 0;
+    } catch (error) {
+        console.error('Error checking image existence:', error);
+        throw error;
+    }
+}
+
 // 通过 ID 获取图片
 export async function getImageById(id: number) {
     try {

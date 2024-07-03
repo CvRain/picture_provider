@@ -1,8 +1,5 @@
 import {GalleryService} from "../services/galleryService";
 import {ApiResponse} from "../models/response";
-import {Context} from "elysia";
-import {GalleryParams} from "../models/galleryModel";
-import {deleteGallery} from "../database/galleryOperation";
 
 export class GalleryController {
     constructor(private galleryService: GalleryService) {
