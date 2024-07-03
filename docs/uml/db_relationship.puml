@@ -1,0 +1,53 @@
+@startuml
+
+object "Admins" as admins {
+  *_id
+  --
+  + user_name
+  + password
+  + email
+  + created_at
+  + last_login
+}
+
+object "Users" as users {
+  *_id
+  --
+  + user_name
+  + password
+  + email
+  + created_at
+  + last_login
+}
+
+object "Galleries" as galleries {
+  *_id
+  --
+  + name
+  + created_at
+  + updated_at
+  + user_id
+}
+
+object "Images" as images {
+  *_id
+  --
+  + name
+  + size
+  + type
+  + data
+  + upload_at
+  + gallery_id
+}
+
+map ManagerInterface{
+    usersOperation *-> users
+    galleriesOperation *-> galleries
+    imagesOperation *-> images
+}
+
+admins -> ManagerInterface
+images::gallery_id --> galleries::_id
+galleries::_user_id --> users::_id
+
+@enduml

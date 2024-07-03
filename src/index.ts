@@ -15,7 +15,7 @@ const startServer = async () => {
         .use(galleryRouter)
         .use(imageRouter)
         .get("/", () => "Hello Elysia")
-        .listen(3000);
+        .listen(3001);
 };
 
 startServer().catch(console.error);
